@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: stg_local_bike__brands
+    columns:
+      - name: brand_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_local_bike__categories
+    columns:
+      - name: category_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_local_bike__customers
+    columns:
+      - name: customer_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_local_bike__order_items
+    columns:
+      - name: order_item_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__orders')
+              field: order_id
+      - name: product_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__products')
+              field: product_id
+
+  - name: stg_local_bike__orders
+    columns:
+      - name: order_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__customers')
+              field: customer_id
+      - name: store_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__stores')
+              field: store_id
+      - name: staff_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__staffs')
+              field: staff_id
+
+  - name: stg_local_bike__products
+    columns:
+      - name: product_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+      - name: category_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__categories')
+              field: category_id
+      - name: brand_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__brands')
+              field: brand_id
+
+  - name: stg_local_bike__staffs
+    columns:
+      - name: staff_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        tests:
+          - relationships:
+              to: ref('stg_local_bike__stores')
+              field: store_id
+
+  - name: stg_local_bike__stocks
+    columns:
+      - name: stock_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_local_bike__stores
+    columns:
+      - name: store_id
+        description: "Primary key for this table."
+        tests:
+          - unique
+          - not_null
