@@ -1,3 +1,4 @@
+
 SELECT store_id,
   store_name,
   phone,
@@ -6,4 +7,4 @@ SELECT store_id,
   city,
   state,
   zip_code
-FROM {{ source('bike_database', 'stores') }}
+FROM {{ source('local_bike', 'stores') }}

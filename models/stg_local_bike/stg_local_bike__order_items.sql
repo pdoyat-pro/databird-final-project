@@ -5,5 +5,5 @@ SELECT order_id,
   quantity AS item_quantity,
   list_price AS item_price,
   discount,
-  quantity * (list_price * (1 - discount)) total_order_item_amount
+  quantity * (list_price * (1 - discount)) AS total_order_item_amount
 FROM {{ source('local_bike', 'order_items') }}
