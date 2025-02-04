@@ -1,0 +1,6 @@
+version: 2
+
+models:
+
+  - name: mrt_local_bike__product_orders
+    description: "This model sums sales at customer level, by amount and quantity, to analyse sales also by city"
